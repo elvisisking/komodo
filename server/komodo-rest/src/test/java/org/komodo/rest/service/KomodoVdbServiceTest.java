@@ -70,6 +70,7 @@ import org.komodo.rest.relational.response.RestVdbModelTableColumn;
 import org.komodo.rest.relational.response.RestVdbPermission;
 import org.komodo.rest.relational.response.RestVdbTranslator;
 import org.komodo.spi.repository.KomodoType;
+import org.komodo.spi.type.TriState;
 import org.komodo.test.utils.TestUtilities;
 import org.teiid.modeshape.sequencer.vdb.lexicon.VdbLexicon;
 
@@ -1003,13 +1004,13 @@ public final class KomodoVdbServiceTest extends AbstractKomodoServiceTest {
         final String permissionId = permissionName;
         final KomodoType permissionType = KomodoType.VDB_PERMISSION;
         final String permissionDataPath = dataPath + '/' + VdbLexicon.DataRole.PERMISSIONS + '/' + permissionName;
-        final boolean allowAlter = true;
-        final boolean allowCreate = false;
-        final boolean allowDelete = true;
-        final boolean allowExecute = false;
-        final boolean allowLanguage = true;
-        final boolean allowRead = false;
-        final boolean allowUpdate = true;
+        final TriState allowAlter = TriState.TRUE;
+        final TriState allowCreate = TriState.FALSE;
+        final TriState allowDelete = TriState.TRUE;
+        final TriState allowExecute = TriState.FALSE;
+        final TriState allowLanguage = TriState.TRUE;
+        final TriState allowRead = TriState.FALSE;
+        final TriState allowUpdate = TriState.TRUE;
         
         { // create data role
             final RestVdbDataRole inDataRole = new RestVdbDataRole();
@@ -1273,46 +1274,46 @@ public final class KomodoVdbServiceTest extends AbstractKomodoServiceTest {
 
             if (permission.getId().equals("myTable.T1")) {
                 assertFalse(permission.hasChildren());
-                assertFalse(permission.isAllowAlter());
-                assertFalse(permission.isAllowCreate());
-                assertFalse(permission.isAllowDelete());
-                assertFalse(permission.isAllowExecute());
-                assertFalse(permission.isAllowLanguage());
-                assertTrue(permission.isAllowRead());
-                assertFalse(permission.isAllowUpdate());
+                assertThat(permission.isAllowAlter(), is(TriState.UNSET));
+                assertThat(permission.isAllowCreate(), is(TriState.UNSET));
+                assertThat(permission.isAllowDelete(), is(TriState.UNSET));
+                assertThat(permission.isAllowExecute(), is(TriState.UNSET));
+                assertThat(permission.isAllowLanguage(), is(TriState.UNSET));
+                assertThat(permission.isAllowRead(), is(TriState.TRUE));
+                assertThat(permission.isAllowUpdate(), is(TriState.UNSET));
 
             } else
                 if (permission.getId().equals("myTable.T2")) {
-                assertTrue(permission.hasChildren());
-                assertTrue(permission.isAllowAlter());
-                assertTrue(permission.isAllowCreate());
-                assertTrue(permission.isAllowDelete());
-                assertTrue(permission.isAllowExecute());
-                assertFalse(permission.isAllowLanguage());
-                assertFalse(permission.isAllowRead());
-                assertTrue(permission.isAllowUpdate());
+                    assertTrue(permission.hasChildren());
+                    assertThat(permission.isAllowAlter(), is(TriState.TRUE));
+                    assertThat(permission.isAllowCreate(), is(TriState.TRUE));
+                    assertThat(permission.isAllowDelete(), is(TriState.TRUE));
+                    assertThat(permission.isAllowExecute(), is(TriState.TRUE));
+                    assertThat(permission.isAllowLanguage(), is(TriState.UNSET));
+                    assertThat(permission.isAllowRead(), is(TriState.FALSE));
+                    assertThat(permission.isAllowUpdate(), is(TriState.TRUE));
 
             } else
                     if (permission.getId().equals("myTable.T2.col1")) {
                 assertTrue(permission.hasChildren());
-                assertFalse(permission.isAllowAlter());
-                assertFalse(permission.isAllowCreate());
-                assertFalse(permission.isAllowDelete());
-                assertFalse(permission.isAllowExecute());
-                assertFalse(permission.isAllowLanguage());
-                assertFalse(permission.isAllowRead());
-                assertFalse(permission.isAllowUpdate());
+                assertThat(permission.isAllowAlter(), is(TriState.UNSET));
+                assertThat(permission.isAllowCreate(), is(TriState.UNSET));
+                assertThat(permission.isAllowDelete(), is(TriState.UNSET));
+                assertThat(permission.isAllowExecute(), is(TriState.UNSET));
+                assertThat(permission.isAllowLanguage(), is(TriState.UNSET));
+                assertThat(permission.isAllowRead(), is(TriState.UNSET));
+                assertThat(permission.isAllowUpdate(), is(TriState.UNSET));
 
             } else
                         if (permission.getId().equals("javascript")) {
                 assertFalse(permission.hasChildren());
-                assertFalse(permission.isAllowAlter());
-                assertFalse(permission.isAllowCreate());
-                assertFalse(permission.isAllowDelete());
-                assertFalse(permission.isAllowExecute());
-                assertTrue(permission.isAllowLanguage());
-                assertFalse(permission.isAllowRead());
-                assertFalse(permission.isAllowUpdate());
+                assertThat(permission.isAllowAlter(), is(TriState.UNSET));
+                assertThat(permission.isAllowCreate(), is(TriState.UNSET));
+                assertThat(permission.isAllowDelete(), is(TriState.UNSET));
+                assertThat(permission.isAllowExecute(), is(TriState.UNSET));
+                assertThat(permission.isAllowLanguage(), is(TriState.TRUE));
+                assertThat(permission.isAllowRead(), is(TriState.UNSET));
+                assertThat(permission.isAllowUpdate(), is(TriState.UNSET));
             }
         }
     }
@@ -1340,13 +1341,13 @@ public final class KomodoVdbServiceTest extends AbstractKomodoServiceTest {
         assertEquals(KomodoType.VDB_PERMISSION, permission.getkType());
         assertEquals("myTable.T1", permission.getId());
         assertFalse(permission.hasChildren());
-        assertFalse(permission.isAllowAlter());
-        assertFalse(permission.isAllowCreate());
-        assertFalse(permission.isAllowDelete());
-        assertFalse(permission.isAllowExecute());
-        assertFalse(permission.isAllowLanguage());
-        assertTrue(permission.isAllowRead());
-        assertFalse(permission.isAllowUpdate());
+        assertThat(permission.isAllowAlter(), is(TriState.UNSET));
+        assertThat(permission.isAllowCreate(), is(TriState.UNSET));
+        assertThat(permission.isAllowDelete(), is(TriState.UNSET));
+        assertThat(permission.isAllowExecute(), is(TriState.UNSET));
+        assertThat(permission.isAllowLanguage(), is(TriState.UNSET));
+        assertThat(permission.isAllowRead(), is(TriState.TRUE));
+        assertThat(permission.isAllowUpdate(), is(TriState.UNSET));
 
         Collection<RestLink> links = permission.getLinks();
         assertEquals(5, links.size());

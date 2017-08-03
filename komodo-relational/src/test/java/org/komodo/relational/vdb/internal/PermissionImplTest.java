@@ -25,6 +25,7 @@ import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsCollectionContaining.hasItems;
 import static org.hamcrest.core.IsInstanceOf.instanceOf;
 import static org.hamcrest.core.IsNull.notNullValue;
+import static org.hamcrest.core.IsNot.not;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 import java.util.Arrays;
@@ -41,6 +42,7 @@ import org.komodo.relational.vdb.Vdb;
 import org.komodo.spi.KException;
 import org.komodo.spi.constants.StringConstants;
 import org.komodo.spi.repository.KomodoType;
+import org.komodo.spi.type.TriState;
 import org.teiid.modeshape.sequencer.vdb.lexicon.VdbLexicon;
 
 @SuppressWarnings( { "javadoc", "nls" } )
@@ -266,49 +268,63 @@ public final class PermissionImplTest extends RelationalModelTest {
 
     @Test
     public void shouldSetAllowAlterValue() throws Exception {
-        final boolean newValue = !Permission.DEFAULT_ALLOW_ALTER;
+        final TriState newValue = TriState.FALSE;
+        assertThat( newValue, is( not( Permission.DEFAULT_ALLOW_ALTER ) ) ); // make sure value is different
+
         this.permission.setAllowAlter( getTransaction(), newValue );
         assertThat( this.permission.isAllowAlter( getTransaction() ), is( newValue ) );
     }
 
     @Test
     public void shouldSetAllowCreateValue() throws Exception {
-        final boolean newValue = !Permission.DEFAULT_ALLOW_CREATE;
+        final TriState newValue = TriState.FALSE;
+        assertThat( newValue, is( not( Permission.DEFAULT_ALLOW_CREATE ) ) ); // make sure value is different
+
         this.permission.setAllowCreate( getTransaction(), newValue );
         assertThat( this.permission.isAllowCreate( getTransaction() ), is( newValue ) );
     }
 
     @Test
     public void shouldSetAllowDeleteValue() throws Exception {
-        final boolean newValue = !Permission.DEFAULT_ALLOW_DELETE;
+        final TriState newValue = TriState.FALSE;
+        assertThat( newValue, is( not( Permission.DEFAULT_ALLOW_DELETE ) ) ); // make sure value is different
+
         this.permission.setAllowDelete( getTransaction(), newValue );
         assertThat( this.permission.isAllowDelete( getTransaction() ), is( newValue ) );
     }
 
     @Test
     public void shouldSetAllowExecuteValue() throws Exception {
-        final boolean newValue = !Permission.DEFAULT_ALLOW_EXECUTE;
+        final TriState newValue = TriState.FALSE;
+        assertThat( newValue, is( not( Permission.DEFAULT_ALLOW_EXECUTE ) ) ); // make sure value is different
+
         this.permission.setAllowExecute( getTransaction(), newValue );
         assertThat( this.permission.isAllowExecute( getTransaction() ), is( newValue ) );
     }
 
     @Test
     public void shouldSetAllowLanguageValue() throws Exception {
-        final boolean newValue = !Permission.DEFAULT_ALLOW_LANGUAGE;
+        final TriState newValue = TriState.FALSE;
+        assertThat( newValue, is( not( Permission.DEFAULT_ALLOW_LANGUAGE ) ) ); // make sure value is different
+
         this.permission.setAllowLanguage( getTransaction(), newValue );
         assertThat( this.permission.isAllowLanguage( getTransaction() ), is( newValue ) );
     }
 
     @Test
     public void shouldSetAllowReadValue() throws Exception {
-        final boolean newValue = !Permission.DEFAULT_ALLOW_READ;
+        final TriState newValue = TriState.FALSE;
+        assertThat( newValue, is( not( Permission.DEFAULT_ALLOW_READ ) ) ); // make sure value is different
+
         this.permission.setAllowRead( getTransaction(), newValue );
         assertThat( this.permission.isAllowRead( getTransaction() ), is( newValue ) );
     }
 
     @Test
     public void shouldSetAllowUpdateValue() throws Exception {
-        final boolean newValue = !Permission.DEFAULT_ALLOW_UPDATE;
+        final TriState newValue = TriState.FALSE;
+        assertThat( newValue, is( not( Permission.DEFAULT_ALLOW_UPDATE ) ) ); // make sure value is different
+
         this.permission.setAllowUpdate( getTransaction(), newValue );
         assertThat( this.permission.isAllowUpdate( getTransaction() ), is( newValue ) );
     }

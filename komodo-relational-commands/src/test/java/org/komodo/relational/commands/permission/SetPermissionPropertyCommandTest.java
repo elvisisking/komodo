@@ -28,6 +28,7 @@ import org.komodo.relational.vdb.Permission;
 import org.komodo.relational.vdb.Vdb;
 import org.komodo.relational.workspace.WorkspaceManager;
 import org.komodo.shell.api.CommandResult;
+import org.komodo.spi.type.TriState;
 
 /**
  * Test Class to test {@link SetPermissionPropertyCommand}.
@@ -59,7 +60,7 @@ public final class SetPermissionPropertyCommandTest extends AbstractCommandTest 
         assertEquals(1, permissions.length);
         assertEquals("myPermission", permissions[0].getName(getTransaction())); //$NON-NLS-1$
 
-        assertEquals(true, permissions[0].isAllowAlter(getTransaction()));
+        assertEquals(TriState.TRUE, permissions[0].isAllowAlter(getTransaction()));
     }
 
     @Test
@@ -96,7 +97,7 @@ public final class SetPermissionPropertyCommandTest extends AbstractCommandTest 
 
         final Permission[] permissions = dataRoles[ 0 ].getPermissions( getTransaction() );
         assertThat( permissions.length, is( 1 ) );
-        assertThat( permissions[ 0 ].isAllowCreate( getTransaction() ), is( true ) );
+        assertThat( permissions[ 0 ].isAllowCreate( getTransaction() ), is( TriState.TRUE ) );
     }
 
     @Test
@@ -120,7 +121,7 @@ public final class SetPermissionPropertyCommandTest extends AbstractCommandTest 
 
         final Permission[] permissions = dataRoles[ 0 ].getPermissions( getTransaction() );
         assertThat( permissions.length, is( 1 ) );
-        assertThat( permissions[ 0 ].isAllowDelete( getTransaction() ), is( true ) );
+        assertThat( permissions[ 0 ].isAllowDelete( getTransaction() ), is( TriState.TRUE ) );
     }
 
     @Test
@@ -144,7 +145,7 @@ public final class SetPermissionPropertyCommandTest extends AbstractCommandTest 
 
         final Permission[] permissions = dataRoles[ 0 ].getPermissions( getTransaction() );
         assertThat( permissions.length, is( 1 ) );
-        assertThat( permissions[ 0 ].isAllowExecute( getTransaction() ), is( true ) );
+        assertThat( permissions[ 0 ].isAllowExecute( getTransaction() ), is( TriState.TRUE ) );
     }
 
     @Test
@@ -168,7 +169,7 @@ public final class SetPermissionPropertyCommandTest extends AbstractCommandTest 
 
         final Permission[] permissions = dataRoles[ 0 ].getPermissions( getTransaction() );
         assertThat( permissions.length, is( 1 ) );
-        assertThat( permissions[ 0 ].isAllowLanguage( getTransaction() ), is( true ) );
+        assertThat( permissions[ 0 ].isAllowLanguage( getTransaction() ), is( TriState.TRUE ) );
     }
 
     @Test
@@ -192,7 +193,7 @@ public final class SetPermissionPropertyCommandTest extends AbstractCommandTest 
 
         final Permission[] permissions = dataRoles[ 0 ].getPermissions( getTransaction() );
         assertThat( permissions.length, is( 1 ) );
-        assertThat( permissions[ 0 ].isAllowRead( getTransaction() ), is( true ) );
+        assertThat( permissions[ 0 ].isAllowRead( getTransaction() ), is( TriState.TRUE ) );
     }
 
     @Test
@@ -216,7 +217,7 @@ public final class SetPermissionPropertyCommandTest extends AbstractCommandTest 
 
         final Permission[] permissions = dataRoles[ 0 ].getPermissions( getTransaction() );
         assertThat( permissions.length, is( 1 ) );
-        assertThat( permissions[ 0 ].isAllowUpdate( getTransaction() ), is( true ) );
+        assertThat( permissions[ 0 ].isAllowUpdate( getTransaction() ), is( TriState.TRUE ) );
     }
 
 }

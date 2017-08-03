@@ -24,12 +24,7 @@
         <description>roleOne described</description>
         <permission>
             <resource-name>myTable.T1</resource-name>
-            <allow-alter>false</allow-alter>
-            <allow-create>false</allow-create>
-            <allow-delete>false</allow-delete>
-            <allow-execute>false</allow-execute>
             <allow-read>true</allow-read>
-            <allow-update>false</allow-update>
         </permission>
         <permission>
             <resource-name>myTable.T2</resource-name>
@@ -43,22 +38,10 @@
         </permission>
         <permission>
             <resource-name>myTable.T2.col1</resource-name>
-            <allow-alter>false</allow-alter>
-			<allow-create>false</allow-create>
-			<allow-delete>false</allow-delete>
-			<allow-execute>false</allow-execute>
-			<allow-read>false</allow-read>
-			<allow-update>false</allow-update>
             <mask order="1">col2</mask>
         </permission>
         <permission>
             <resource-name>javascript</resource-name>
-            <allow-alter>false</allow-alter>
-            <allow-create>false</allow-create>
-            <allow-delete>false</allow-delete>
-            <allow-execute>false</allow-execute>
-            <allow-read>false</allow-read>
-            <allow-update>false</allow-update>
             <allow-language>true</allow-language>
         </permission>
         <mapped-role-name>ROLE1</mapped-role-name>

@@ -32,18 +32,19 @@ import org.junit.Test;
 import org.komodo.rest.relational.response.RestVdbCondition;
 import org.komodo.rest.relational.response.RestVdbMask;
 import org.komodo.rest.relational.response.RestVdbPermission;
+import org.komodo.spi.type.TriState;
 
 @SuppressWarnings( { "javadoc", "nls" } )
 public final class RestVdbPermissionTest {
 
     private static final String NAME = "MyPermission";
-    private static final boolean ALLOW_ALTER = true;
-    private static final boolean ALLOW_CREATE = true;
-    private static final boolean ALLOW_DELETE = true;
-    private static final boolean ALLOW_EXECUTE = true;
-    private static final boolean ALLOW_LANGUAGE = true;
-    private static final boolean ALLOW_READ = true;
-    private static final boolean ALLOW_UPDATE = true;
+    private static final TriState ALLOW_ALTER = TriState.TRUE;
+    private static final TriState ALLOW_CREATE = TriState.TRUE;
+    private static final TriState ALLOW_DELETE = TriState.TRUE;
+    private static final TriState ALLOW_EXECUTE = TriState.TRUE;
+    private static final TriState ALLOW_LANGUAGE = TriState.TRUE;
+    private static final TriState ALLOW_READ = TriState.TRUE;
+    private static final TriState ALLOW_UPDATE = TriState.TRUE;
 
     private static final List<RestVdbCondition> CONDITIONS = new ArrayList<>();
 
@@ -144,49 +145,70 @@ public final class RestVdbPermissionTest {
     @Test
     public void shouldNotBeEqualWhenAllowAlterIsDifferent() {
         final RestVdbPermission thatPermission = copy();
-        thatPermission.setAllowAlter( !this.permission.isAllowAlter() );
+        final TriState different = TriState.FALSE;
+        assertThat( this.permission.isAllowAlter(), is( not( different ) ) );
+
+        thatPermission.setAllowAlter( different );
         assertThat( this.permission, is( not( thatPermission ) ) );
     }
 
     @Test
     public void shouldNotBeEqualWhenAllowCreateIsDifferent() {
         final RestVdbPermission thatPermission = copy();
-        thatPermission.setAllowCreate( !this.permission.isAllowCreate() );
+        final TriState different = TriState.FALSE;
+        assertThat( this.permission.isAllowCreate(), is( not( different ) ) );
+
+        thatPermission.setAllowCreate( different );
         assertThat( this.permission, is( not( thatPermission ) ) );
     }
 
     @Test
     public void shouldNotBeEqualWhenAllowDeleteIsDifferent() {
         final RestVdbPermission thatPermission = copy();
-        thatPermission.setAllowDelete( !this.permission.isAllowDelete() );
+        final TriState different = TriState.FALSE;
+        assertThat( this.permission.isAllowDelete(), is( not( different ) ) );
+
+        thatPermission.setAllowDelete( different );
         assertThat( this.permission, is( not( thatPermission ) ) );
     }
 
     @Test
     public void shouldNotBeEqualWhenAllowExecuteIsDifferent() {
         final RestVdbPermission thatPermission = copy();
-        thatPermission.setAllowExecute( !this.permission.isAllowExecute() );
+        final TriState different = TriState.FALSE;
+        assertThat( this.permission.isAllowExecute(), is( not( different ) ) );
+
+        thatPermission.setAllowExecute( different );
         assertThat( this.permission, is( not( thatPermission ) ) );
     }
 
     @Test
     public void shouldNotBeEqualWhenAllowLanguageIsDifferent() {
         final RestVdbPermission thatPermission = copy();
-        thatPermission.setAllowLanguage( !this.permission.isAllowLanguage() );
+        final TriState different = TriState.FALSE;
+        assertThat( this.permission.isAllowLanguage(), is( not( different ) ) );
+
+        thatPermission.setAllowLanguage( different );
         assertThat( this.permission, is( not( thatPermission ) ) );
     }
 
     @Test
     public void shouldNotBeEqualWhenAllowReadIsDifferent() {
         final RestVdbPermission thatPermission = copy();
-        thatPermission.setAllowRead( !this.permission.isAllowRead() );
+        final TriState different = TriState.FALSE;
+        assertThat( this.permission.isAllowRead(), is( not( different ) ) );
+
+        thatPermission.setAllowRead( different );
         assertThat( this.permission, is( not( thatPermission ) ) );
     }
 
     @Test
     public void shouldNotBeEqualWhenAllowUpdateIsDifferent() {
         final RestVdbPermission thatPermission = copy();
-        thatPermission.setAllowUpdate( !this.permission.isAllowUpdate() );
+        final TriState different = TriState.FALSE;
+        assertThat( this.permission.isAllowUpdate(), is( not( different ) ) );
+
+        thatPermission.setAllowUpdate( different );
         assertThat( this.permission, is( not( thatPermission ) ) );
     }
 
@@ -199,49 +221,63 @@ public final class RestVdbPermissionTest {
 
     @Test
     public void shouldSetAllowAlter() {
-        final boolean newValue = !this.permission.isAllowAlter();
+        final TriState newValue = TriState.FALSE;
+        assertThat( this.permission.isAllowAlter(), is( not( newValue ) ) );
+
         this.permission.setAllowAlter( newValue );
         assertThat( this.permission.isAllowAlter(), is( newValue ) );
     }
 
     @Test
     public void shouldSetAllowCreate() {
-        final boolean newValue = !this.permission.isAllowCreate();
+        final TriState newValue = TriState.FALSE;
+        assertThat( this.permission.isAllowCreate(), is( not( newValue ) ) );
+
         this.permission.setAllowCreate( newValue );
         assertThat( this.permission.isAllowCreate(), is( newValue ) );
     }
 
     @Test
     public void shouldSetAllowDelete() {
-        final boolean newValue = !this.permission.isAllowDelete();
+        final TriState newValue = TriState.FALSE;
+        assertThat( this.permission.isAllowDelete(), is( not( newValue ) ) );
+
         this.permission.setAllowDelete( newValue );
         assertThat( this.permission.isAllowDelete(), is( newValue ) );
     }
 
     @Test
     public void shouldSetAllowExecute() {
-        final boolean newValue = !this.permission.isAllowExecute();
+        final TriState newValue = TriState.FALSE;
+        assertThat( this.permission.isAllowExecute(), is( not( newValue ) ) );
+
         this.permission.setAllowExecute( newValue );
         assertThat( this.permission.isAllowExecute(), is( newValue ) );
     }
 
     @Test
     public void shouldSetAllowLanguage() {
-        final boolean newValue = !this.permission.isAllowLanguage();
+        final TriState newValue = TriState.FALSE;
+        assertThat( this.permission.isAllowLanguage(), is( not( newValue ) ) );
+
         this.permission.setAllowLanguage( newValue );
         assertThat( this.permission.isAllowLanguage(), is( newValue ) );
     }
 
     @Test
     public void shouldSetAllowRead() {
-        final boolean newValue = !this.permission.isAllowRead();
+        final TriState newValue = TriState.FALSE;
+        assertThat( this.permission.isAllowRead(), is( not( newValue ) ) );
+
         this.permission.setAllowRead( newValue );
         assertThat( this.permission.isAllowRead(), is( newValue ) );
     }
 
     @Test
     public void shouldSetAllowUpdate() {
-        final boolean newValue = !this.permission.isAllowUpdate();
+        final TriState newValue = TriState.FALSE;
+        assertThat( this.permission.isAllowUpdate(), is( not( newValue ) ) );
+
         this.permission.setAllowUpdate( newValue );
         assertThat( this.permission.isAllowUpdate(), is( newValue ) );
     }

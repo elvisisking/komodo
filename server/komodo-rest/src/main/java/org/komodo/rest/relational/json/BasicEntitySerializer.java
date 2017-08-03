@@ -27,6 +27,8 @@ import java.io.IOException;
 import java.util.Map;
 import org.komodo.rest.Messages;
 import org.komodo.rest.RestBasicEntity;
+import org.komodo.spi.type.TriState;
+
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
@@ -141,6 +143,13 @@ public class BasicEntitySerializer<T extends RestBasicEntity> extends AbstractEn
             out.value((double) value);
         else if (value instanceof Float)
             out.value((double) value);
+        else if (value instanceof TriState) {
+            if ( ( ( TriState )value ).isUnset() ) {
+                out.nullValue();
+            } else {
+                out.value( ( ( TriState )value ).booleanValue() );
+            }
+        }
         else if (value instanceof String[]) {
             out.beginArray();
             for (String val: (String[]) value) {

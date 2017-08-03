@@ -331,11 +331,16 @@ public class VdbNodeVisitor extends AbstractNodeVisitor implements StringConstan
             // Don't include allow-language if not present or set to false as when this was present queries were not working
             // in the default read-only data role. Might need a 3-state value (true, false, not set) for this property.
             // See TEIIDTOOLS-224
-            if ( VdbLexicon.DataRole.Permission.ALLOW_LANGUAGE.equals( permTags[ i ][ 0 ] )
-                 && ( ( permProp == null ) || !permProp.getBoolean() ) ) {
+//            if ( VdbLexicon.DataRole.Permission.ALLOW_LANGUAGE.equals( permTags[ i ][ 0 ] )
+//                 && ( ( permProp == null ) || !permProp.getBoolean() ) ) {
+//                continue;
+//            }
+
+            // don't include if no value was set
+            if ( permProp == null ) {
                 continue;
             }
-
+            
             Boolean value = permProp == null ? false : permProp.getBoolean();
             writeTab(ElementTabValue.PERMISSION_ALLOW);
             writeElementWithText(permTags[i][1], value.toString());

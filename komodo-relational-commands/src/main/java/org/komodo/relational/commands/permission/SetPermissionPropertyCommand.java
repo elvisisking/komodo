@@ -31,6 +31,7 @@ import org.komodo.shell.api.TabCompletionModifier;
 import org.komodo.shell.api.WorkspaceStatus;
 import org.komodo.shell.commands.SetPropertyCommand;
 import org.komodo.spi.repository.Repository.UnitOfWork;
+import org.komodo.spi.type.TriState;
 import org.komodo.utils.StringUtils;
 import org.komodo.utils.i18n.I18n;
 
@@ -69,43 +70,43 @@ public final class SetPermissionPropertyCommand extends PermissionShellCommand {
 
             if ( ALLOW_ALTER.equals( name ) ) {
                 if ( Boolean.TRUE.toString().equals( value ) || Boolean.FALSE.toString().equals( value ) ) {
-                    permission.setAllowAlter( transaction, Boolean.parseBoolean( value ) );
+                    permission.setAllowAlter( transaction, TriState.valueOf( Boolean.parseBoolean( value ) ) );
                 } else {
                     errorMsg = I18n.bind( WorkspaceCommandsI18n.invalidBooleanPropertyValue, ALLOW_ALTER );
                 }
             } else if ( ALLOW_CREATE.equals( name ) ) {
                 if ( Boolean.TRUE.toString().equals( value ) || Boolean.FALSE.toString().equals( value ) ) {
-                    permission.setAllowCreate( transaction, Boolean.parseBoolean( value ) );
+                    permission.setAllowCreate( transaction, TriState.valueOf( Boolean.parseBoolean( value ) ) );
                 } else {
                     errorMsg = I18n.bind( WorkspaceCommandsI18n.invalidBooleanPropertyValue, ALLOW_CREATE );
                 }
             } else if ( ALLOW_DELETE.equals( name ) ) {
                 if ( Boolean.TRUE.toString().equals( value ) || Boolean.FALSE.toString().equals( value ) ) {
-                    permission.setAllowDelete( transaction, Boolean.parseBoolean( value ) );
+                    permission.setAllowDelete( transaction, TriState.valueOf( Boolean.parseBoolean( value ) ) );
                 } else {
                     errorMsg = I18n.bind( WorkspaceCommandsI18n.invalidBooleanPropertyValue, ALLOW_DELETE );
                 }
             } else if ( ALLOW_EXECUTE.equals( name ) ) {
                 if ( Boolean.TRUE.toString().equals( value ) || Boolean.FALSE.toString().equals( value ) ) {
-                    permission.setAllowExecute( transaction, Boolean.parseBoolean( value ) );
+                    permission.setAllowExecute( transaction, TriState.valueOf( Boolean.parseBoolean( value ) ) );
                 } else {
                     errorMsg = I18n.bind( WorkspaceCommandsI18n.invalidBooleanPropertyValue, ALLOW_EXECUTE );
                 }
             } else if ( ALLOW_LANGUAGE.equals( name ) ) {
                 if ( Boolean.TRUE.toString().equals( value ) || Boolean.FALSE.toString().equals( value ) ) {
-                    permission.setAllowLanguage( transaction, Boolean.parseBoolean( value ) );
+                    permission.setAllowLanguage( transaction, TriState.valueOf( Boolean.parseBoolean( value ) ) );
                 } else {
                     errorMsg = I18n.bind( WorkspaceCommandsI18n.invalidBooleanPropertyValue, ALLOW_LANGUAGE );
                 }
             } else if ( ALLOW_READ.equals( name ) ) {
                 if ( Boolean.TRUE.toString().equals( value ) || Boolean.FALSE.toString().equals( value ) ) {
-                    permission.setAllowRead( transaction, Boolean.parseBoolean( value ) );
+                    permission.setAllowRead( transaction, TriState.valueOf( Boolean.parseBoolean( value ) ) );
                 } else {
                     errorMsg = I18n.bind( WorkspaceCommandsI18n.invalidBooleanPropertyValue, ALLOW_READ );
                 }
             } else if ( ALLOW_UPDATE.equals( name ) ) {
                 if ( Boolean.TRUE.toString().equals( value ) || Boolean.FALSE.toString().equals( value ) ) {
-                    permission.setAllowUpdate( transaction, Boolean.parseBoolean( value ) );
+                    permission.setAllowUpdate( transaction, TriState.valueOf( Boolean.parseBoolean( value ) ) );
                 } else {
                     errorMsg = I18n.bind( WorkspaceCommandsI18n.invalidBooleanPropertyValue, ALLOW_UPDATE );
                 }

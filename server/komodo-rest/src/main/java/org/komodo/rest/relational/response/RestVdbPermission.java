@@ -33,6 +33,7 @@ import org.komodo.rest.RestLink.LinkType;
 import org.komodo.rest.relational.KomodoRestUriBuilder.SettingNames;
 import org.komodo.spi.KException;
 import org.komodo.spi.repository.Repository.UnitOfWork;
+import org.komodo.spi.type.TriState;
 import org.komodo.utils.ArgCheck;
 import org.teiid.modeshape.sequencer.vdb.lexicon.VdbLexicon;
 
@@ -116,13 +117,6 @@ public final class RestVdbPermission extends RestBasicEntity {
      * Constructor for use <strong>only</strong> when deserializing.
      */
     public RestVdbPermission() {
-        setAllowAlter(Permission.DEFAULT_ALLOW_ALTER);
-        setAllowCreate(Permission.DEFAULT_ALLOW_CREATE);
-        setAllowDelete(Permission.DEFAULT_ALLOW_DELETE);
-        setAllowExecute(Permission.DEFAULT_ALLOW_EXECUTE);
-        setAllowLanguage(Permission.DEFAULT_ALLOW_LANGUAGE);
-        setAllowRead(Permission.DEFAULT_ALLOW_READ);
-        setAllowUpdate(Permission.DEFAULT_ALLOW_UPDATE);
     }
 
     /**
@@ -136,13 +130,14 @@ public final class RestVdbPermission extends RestBasicEntity {
         super(baseUri, permission, uow, false);
 
         setName(permission.getName(uow));
-        setAllowAlter(permission.isAllowAlter(uow));
-        setAllowCreate(permission.isAllowCreate(uow));
-        setAllowDelete(permission.isAllowDelete(uow));
-        setAllowExecute(permission.isAllowExecute(uow));
-        setAllowLanguage(permission.isAllowLanguage(uow));
-        setAllowRead(permission.isAllowRead(uow));
-        setAllowUpdate(permission.isAllowUpdate(uow));
+        
+        setAllowAlter( permission.isAllowAlter( uow ) );
+        setAllowCreate(permission.isAllowCreate( uow ) );
+        setAllowDelete(permission.isAllowDelete( uow ) );
+        setAllowExecute(permission.isAllowExecute( uow ) );
+        setAllowLanguage(permission.isAllowLanguage( uow ) );
+        setAllowRead(permission.isAllowRead( uow ) );
+        setAllowUpdate(permission.isAllowUpdate( uow ) );
 
         DataRole dataRole = ancestor(permission, DataRole.class, uow);
         ArgCheck.isNotNull(dataRole);
@@ -174,64 +169,70 @@ public final class RestVdbPermission extends RestBasicEntity {
     /**
      * @return <code>true</code> if allows alter
      */
-    public boolean isAllowAlter() {
+    public TriState isAllowAlter() {
         Object value = tuples.get(ALLOW_ALTER_LABEL);
-        return value != null ? Boolean.parseBoolean(value.toString()) : Permission.DEFAULT_ALLOW_ALTER;
+        return value != null ? TriState.valueOf( Boolean.parseBoolean(value.toString() ) )
+                             : Permission.DEFAULT_ALLOW_ALTER;
     }
 
     /**
      * @return <code>true</code> if allows create
      */
-    public boolean isAllowCreate() {
+    public TriState isAllowCreate() {
         Object value = tuples.get(ALLOW_CREATE_LABEL);
-        return value != null ? Boolean.parseBoolean(value.toString()) : Permission.DEFAULT_ALLOW_CREATE;
+        return value != null ? TriState.valueOf( Boolean.parseBoolean(value.toString() ) ) 
+                             : Permission.DEFAULT_ALLOW_CREATE;
     }
 
     /**
      * @return <code>true</code> if allows delete
      */
-    public boolean isAllowDelete() {
+    public TriState isAllowDelete() {
         Object value = tuples.get(ALLOW_DELETE_LABEL);
-        return value != null ? Boolean.parseBoolean(value.toString()) : Permission.DEFAULT_ALLOW_DELETE;
+        return value != null ? TriState.valueOf( Boolean.parseBoolean(value.toString() ) ) 
+                             : Permission.DEFAULT_ALLOW_DELETE;
     }
 
     /**
      * @return <code>true</code> if allows execute
      */
-    public boolean isAllowExecute() {
+    public TriState isAllowExecute() {
         Object value = tuples.get(ALLOW_EXECUTE_LABEL);
-        return value != null ? Boolean.parseBoolean(value.toString()) : Permission.DEFAULT_ALLOW_EXECUTE;
+        return value != null ? TriState.valueOf( Boolean.parseBoolean(value.toString() ) ) 
+                             : Permission.DEFAULT_ALLOW_EXECUTE;
     }
 
     /**
      * @return <code>true</code> if allows language
      */
-    public boolean isAllowLanguage() {
+    public TriState isAllowLanguage() {
         Object value = tuples.get(ALLOW_LANGUAGE_LABEL);
-        return value != null ? Boolean.parseBoolean(value.toString()) : Permission.DEFAULT_ALLOW_LANGUAGE;
+        return value != null ? TriState.valueOf( Boolean.parseBoolean(value.toString() ) ) 
+                             : Permission.DEFAULT_ALLOW_LANGUAGE;
     }
 
     /**
      * @return <code>true</code> if allows read
      */
-    public boolean isAllowRead() {
+    public TriState isAllowRead() {
         Object value = tuples.get(ALLOW_READ_LABEL);
-        return value != null ? Boolean.parseBoolean(value.toString()) : Permission.DEFAULT_ALLOW_READ;
+        return value != null ? TriState.valueOf( Boolean.parseBoolean(value.toString() ) )
+                             : Permission.DEFAULT_ALLOW_READ;
     }
 
     /**
      * @return <code>true</code> if allows update
      */
-    public boolean isAllowUpdate() {
+    public TriState isAllowUpdate() {
         Object value = tuples.get(ALLOW_UPDATE_LABEL);
-        return value != null ? Boolean.parseBoolean(value.toString()) : Permission.DEFAULT_ALLOW_UPDATE;
+        return value != null ? TriState.valueOf( Boolean.parseBoolean(value.toString() ) ) : TriState.UNSET;
     }
 
     /**
      * @param newAllowAlter
      *        <code>true</code> if allows alter
      */
-    public void setAllowAlter( final boolean newAllowAlter ) {
+    public void setAllowAlter( final TriState newAllowAlter ) {
         tuples.put(ALLOW_ALTER_LABEL, newAllowAlter);
     }
 
@@ -239,7 +240,7 @@ public final class RestVdbPermission extends RestBasicEntity {
      * @param newAllowCreate
      *        <code>true</code> if allows create
      */
-    public void setAllowCreate( final boolean newAllowCreate ) {
+    public void setAllowCreate( final TriState newAllowCreate ) {
         tuples.put(ALLOW_CREATE_LABEL, newAllowCreate);
     }
 
@@ -247,7 +248,7 @@ public final class RestVdbPermission extends RestBasicEntity {
      * @param newAllowDelete
      *        <code>true</code> if allows delete
      */
-    public void setAllowDelete( final boolean newAllowDelete ) {
+    public void setAllowDelete( final TriState newAllowDelete ) {
         tuples.put(ALLOW_DELETE_LABEL, newAllowDelete);
     }
 
@@ -255,7 +256,7 @@ public final class RestVdbPermission extends RestBasicEntity {
      * @param newAllowExecute
      *        <code>true</code> if allows execute
      */
-    public void setAllowExecute( final boolean newAllowExecute ) {
+    public void setAllowExecute( final TriState newAllowExecute ) {
         tuples.put(ALLOW_EXECUTE_LABEL, newAllowExecute);
     }
 
@@ -263,7 +264,7 @@ public final class RestVdbPermission extends RestBasicEntity {
      * @param newAllowLanguage
      *        <code>true</code> if allows language
      */
-    public void setAllowLanguage( final boolean newAllowLanguage ) {
+    public void setAllowLanguage( final TriState newAllowLanguage ) {
         tuples.put(ALLOW_LANGUAGE_LABEL, newAllowLanguage);
     }
 
@@ -271,7 +272,7 @@ public final class RestVdbPermission extends RestBasicEntity {
      * @param newAllowRead
      *        <code>true</code> if allows read
      */
-    public void setAllowRead( final boolean newAllowRead ) {
+    public void setAllowRead( final TriState newAllowRead ) {
         tuples.put(ALLOW_READ_LABEL, newAllowRead);
     }
 
@@ -279,7 +280,7 @@ public final class RestVdbPermission extends RestBasicEntity {
      * @param newAllowUpdate
      *        <code>true</code> if allows update
      */
-    public void setAllowUpdate( final boolean newAllowUpdate ) {
+    public void setAllowUpdate( final TriState newAllowUpdate ) {
         tuples.put(ALLOW_UPDATE_LABEL, newAllowUpdate);
     }
 

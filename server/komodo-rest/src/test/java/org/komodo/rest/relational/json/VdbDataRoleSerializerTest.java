@@ -36,6 +36,7 @@ import org.komodo.rest.RestBasicEntity;
 import org.komodo.rest.relational.response.RestVdbDataRole;
 import org.komodo.rest.relational.response.RestVdbPermission;
 import org.komodo.spi.repository.KomodoType;
+import org.komodo.spi.type.TriState;
 import org.mockito.Mockito;
 
 @SuppressWarnings( {"javadoc", "nls"} )
@@ -51,13 +52,13 @@ public final class VdbDataRoleSerializerTest extends AbstractSerializerTest {
     private static final List<String> MAPPED_ROLES = Arrays.asList("larry", "curly", "moe");
     
     private static final String PERMISSION_NAME = "MyPermission";
-    private static final boolean ALLOW_ALTER = true;
-    private static final boolean ALLOW_CREATE = false;
-    private static final boolean ALLOW_DELETE = true;
-    private static final boolean ALLOW_EXECUTE = false;
-    private static final boolean ALLOW_LANGUAGE = true;
-    private static final boolean ALLOW_READ = false;
-    private static final boolean ALLOW_UPDATE = true;
+    private static final TriState ALLOW_ALTER = TriState.TRUE;
+    private static final TriState ALLOW_CREATE = TriState.FALSE;
+    private static final TriState ALLOW_DELETE = TriState.TRUE;
+    private static final TriState ALLOW_EXECUTE = TriState.FALSE;
+    private static final TriState ALLOW_LANGUAGE = TriState.TRUE;
+    private static final TriState ALLOW_READ = TriState.FALSE;
+    private static final TriState ALLOW_UPDATE = TriState.TRUE;
 
     /**
      * JSON without a permission.

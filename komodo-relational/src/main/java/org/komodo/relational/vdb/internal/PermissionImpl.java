@@ -38,6 +38,7 @@ import org.komodo.spi.repository.PropertyValueType;
 import org.komodo.spi.repository.Repository;
 import org.komodo.spi.repository.Repository.UnitOfWork;
 import org.komodo.spi.repository.Repository.UnitOfWork.State;
+import org.komodo.spi.type.TriState;
 import org.komodo.utils.ArgCheck;
 import org.teiid.modeshape.sequencer.vdb.lexicon.VdbLexicon;
 
@@ -423,9 +424,11 @@ public final class PermissionImpl extends RelationalObjectImpl implements Permis
      * @see org.komodo.relational.vdb.Permission#isAllowAlter(org.komodo.spi.repository.Repository.UnitOfWork)
      */
     @Override
-    public boolean isAllowAlter( final UnitOfWork uow ) throws KException {
-        return getObjectProperty(uow, PropertyValueType.BOOLEAN, "isAllowAlter", //$NON-NLS-1$
-                                 VdbLexicon.DataRole.Permission.ALLOW_ALTER);
+    public TriState isAllowAlter( final UnitOfWork uow ) throws KException {
+        final Boolean result = getObjectProperty( uow, 
+                                                  PropertyValueType.BOOLEAN, "isAllowAlter", //$NON-NLS-1$
+                                                  VdbLexicon.DataRole.Permission.ALLOW_ALTER );
+        return TriState.valueOf( result );
     }
 
     /**
@@ -434,9 +437,11 @@ public final class PermissionImpl extends RelationalObjectImpl implements Permis
      * @see org.komodo.relational.vdb.Permission#isAllowCreate(org.komodo.spi.repository.Repository.UnitOfWork)
      */
     @Override
-    public boolean isAllowCreate( final UnitOfWork uow ) throws KException {
-        return getObjectProperty(uow, PropertyValueType.BOOLEAN, "isAllowCreate", //$NON-NLS-1$
-                                 VdbLexicon.DataRole.Permission.ALLOW_CREATE);
+    public TriState isAllowCreate( final UnitOfWork uow ) throws KException {
+        final Boolean result = getObjectProperty( uow, 
+                                                  PropertyValueType.BOOLEAN, "isAllowCreate", //$NON-NLS-1$
+                                                  VdbLexicon.DataRole.Permission.ALLOW_CREATE );
+        return TriState.valueOf( result );
     }
 
     /**
@@ -445,9 +450,11 @@ public final class PermissionImpl extends RelationalObjectImpl implements Permis
      * @see org.komodo.relational.vdb.Permission#isAllowDelete(org.komodo.spi.repository.Repository.UnitOfWork)
      */
     @Override
-    public boolean isAllowDelete( final UnitOfWork uow ) throws KException {
-        return getObjectProperty(uow, PropertyValueType.BOOLEAN, "isAllowDelete", //$NON-NLS-1$
-                                 VdbLexicon.DataRole.Permission.ALLOW_DELETE);
+    public TriState isAllowDelete( final UnitOfWork uow ) throws KException {
+        final Boolean result = getObjectProperty( uow, 
+                                                  PropertyValueType.BOOLEAN, "isAllowDelete", //$NON-NLS-1$
+                                                  VdbLexicon.DataRole.Permission.ALLOW_DELETE );
+        return TriState.valueOf( result );
     }
 
     /**
@@ -456,9 +463,11 @@ public final class PermissionImpl extends RelationalObjectImpl implements Permis
      * @see org.komodo.relational.vdb.Permission#isAllowExecute(org.komodo.spi.repository.Repository.UnitOfWork)
      */
     @Override
-    public boolean isAllowExecute( final UnitOfWork uow ) throws KException {
-        return getObjectProperty(uow, PropertyValueType.BOOLEAN, "isAllowExecute", //$NON-NLS-1$
-                                 VdbLexicon.DataRole.Permission.ALLOW_EXECUTE);
+    public TriState isAllowExecute( final UnitOfWork uow ) throws KException {
+        final Boolean result = getObjectProperty( uow, 
+                                                  PropertyValueType.BOOLEAN, "isAllowExecute", //$NON-NLS-1$
+                                                  VdbLexicon.DataRole.Permission.ALLOW_EXECUTE );
+        return TriState.valueOf( result );
     }
 
     /**
@@ -467,9 +476,11 @@ public final class PermissionImpl extends RelationalObjectImpl implements Permis
      * @see org.komodo.relational.vdb.Permission#isAllowLanguage(org.komodo.spi.repository.Repository.UnitOfWork)
      */
     @Override
-    public boolean isAllowLanguage( final UnitOfWork uow ) throws KException {
-        return getObjectProperty(uow, PropertyValueType.BOOLEAN, "isAllowLanguage", //$NON-NLS-1$
-                                 VdbLexicon.DataRole.Permission.ALLOW_LANGUAGE);
+    public TriState isAllowLanguage( final UnitOfWork uow ) throws KException {
+        final Boolean result = getObjectProperty( uow, 
+                                                  PropertyValueType.BOOLEAN, "isAllowLanguage", //$NON-NLS-1$
+                                                  VdbLexicon.DataRole.Permission.ALLOW_LANGUAGE );
+        return TriState.valueOf( result );
     }
 
     /**
@@ -478,9 +489,11 @@ public final class PermissionImpl extends RelationalObjectImpl implements Permis
      * @see org.komodo.relational.vdb.Permission#isAllowRead(org.komodo.spi.repository.Repository.UnitOfWork)
      */
     @Override
-    public boolean isAllowRead( final UnitOfWork uow ) throws KException {
-        return getObjectProperty(uow, PropertyValueType.BOOLEAN, "isAllowRead", //$NON-NLS-1$
-                                 VdbLexicon.DataRole.Permission.ALLOW_READ);
+    public TriState isAllowRead( final UnitOfWork uow ) throws KException {
+        final Boolean result = getObjectProperty( uow, 
+                                                   PropertyValueType.BOOLEAN, "isAllowRead", //$NON-NLS-1$
+                                                   VdbLexicon.DataRole.Permission.ALLOW_READ );
+        return TriState.valueOf( result );
     }
 
     /**
@@ -489,9 +502,11 @@ public final class PermissionImpl extends RelationalObjectImpl implements Permis
      * @see org.komodo.relational.vdb.Permission#isAllowUpdate(org.komodo.spi.repository.Repository.UnitOfWork)
      */
     @Override
-    public boolean isAllowUpdate( final UnitOfWork uow ) throws KException {
-        return getObjectProperty(uow, PropertyValueType.BOOLEAN, "isAllowUpdate", //$NON-NLS-1$
-                                 VdbLexicon.DataRole.Permission.ALLOW_UPDATE);
+    public TriState isAllowUpdate( final UnitOfWork uow ) throws KException {
+        final Boolean result = getObjectProperty( uow, 
+                                                  PropertyValueType.BOOLEAN, "isAllowUpdate", //$NON-NLS-1$
+                                                  VdbLexicon.DataRole.Permission.ALLOW_UPDATE );
+        return TriState.valueOf( result );
     }
 
     /**
@@ -541,79 +556,93 @@ public final class PermissionImpl extends RelationalObjectImpl implements Permis
 
     /**
      * {@inheritDoc}
-     *
-     * @see org.komodo.relational.vdb.Permission#setAllowAlter(org.komodo.spi.repository.Repository.UnitOfWork, boolean)
+     * 
+     * @see org.komodo.relational.vdb.Permission#setAllowAlter(org.komodo.spi.repository.Repository.UnitOfWork,
+     *      org.komodo.spi.type.TriState)
      */
     @Override
     public void setAllowAlter( final UnitOfWork uow,
-                               final boolean newAllowAlter ) throws KException {
-        setObjectProperty(uow, "setAllowAlter", VdbLexicon.DataRole.Permission.ALLOW_ALTER, newAllowAlter); //$NON-NLS-1$
+                               final TriState newAllowAlter ) throws KException {
+        final Boolean value = ( newAllowAlter.isUnset() ) ? null : ( newAllowAlter.isTrue() ) ? true : false;
+        setObjectProperty(uow, "setAllowAlter", VdbLexicon.DataRole.Permission.ALLOW_ALTER, value); //$NON-NLS-1$
     }
 
     /**
      * {@inheritDoc}
-     *
-     * @see org.komodo.relational.vdb.Permission#setAllowCreate(org.komodo.spi.repository.Repository.UnitOfWork, boolean)
+     * 
+     * @see org.komodo.relational.vdb.Permission#setAllowCreate(org.komodo.spi.repository.Repository.UnitOfWork,
+     *      org.komodo.spi.type.TriState)
      */
     @Override
     public void setAllowCreate( final UnitOfWork uow,
-                                final boolean newAllowCreate ) throws KException {
-        setObjectProperty(uow, "setAllowCreate", VdbLexicon.DataRole.Permission.ALLOW_CREATE, newAllowCreate); //$NON-NLS-1$
+                                final TriState newAllowCreate ) throws KException {
+        final Boolean value = ( newAllowCreate.isUnset() ) ? null : ( newAllowCreate.isTrue() ) ? true : false;
+        setObjectProperty(uow, "setAllowCreate", VdbLexicon.DataRole.Permission.ALLOW_CREATE, value); //$NON-NLS-1$
     }
 
     /**
      * {@inheritDoc}
-     *
-     * @see org.komodo.relational.vdb.Permission#setAllowDelete(org.komodo.spi.repository.Repository.UnitOfWork, boolean)
+     * 
+     * @see org.komodo.relational.vdb.Permission#setAllowDelete(org.komodo.spi.repository.Repository.UnitOfWork,
+     *      org.komodo.spi.type.TriState)
      */
     @Override
     public void setAllowDelete( final UnitOfWork uow,
-                                final boolean newAllowDelete ) throws KException {
-        setObjectProperty(uow, "setAllowDelete", VdbLexicon.DataRole.Permission.ALLOW_DELETE, newAllowDelete); //$NON-NLS-1$
+                                final TriState newAllowDelete ) throws KException {
+        final Boolean value = ( newAllowDelete.isUnset() ) ? null : ( newAllowDelete.isTrue() ) ? true : false;
+        setObjectProperty(uow, "setAllowDelete", VdbLexicon.DataRole.Permission.ALLOW_DELETE, value); //$NON-NLS-1$
     }
 
     /**
      * {@inheritDoc}
-     *
-     * @see org.komodo.relational.vdb.Permission#setAllowExecute(org.komodo.spi.repository.Repository.UnitOfWork, boolean)
+     * 
+     * @see org.komodo.relational.vdb.Permission#setAllowExecute(org.komodo.spi.repository.Repository.UnitOfWork,
+     *      org.komodo.spi.type.TriState)
      */
     @Override
     public void setAllowExecute( final UnitOfWork uow,
-                                 final boolean newAllowExecute ) throws KException {
-        setObjectProperty(uow, "setAllowExecute", VdbLexicon.DataRole.Permission.ALLOW_EXECUTE, newAllowExecute); //$NON-NLS-1$
+                                 final TriState newAllowExecute ) throws KException {
+        final Boolean value = ( newAllowExecute.isUnset() ) ? null : ( newAllowExecute.isTrue() ) ? true : false;
+        setObjectProperty(uow, "setAllowExecute", VdbLexicon.DataRole.Permission.ALLOW_EXECUTE, value); //$NON-NLS-1$
     }
 
     /**
      * {@inheritDoc}
-     *
-     * @see org.komodo.relational.vdb.Permission#setAllowLanguage(org.komodo.spi.repository.Repository.UnitOfWork, boolean)
+     * 
+     * @see org.komodo.relational.vdb.Permission#setAllowLanguage(org.komodo.spi.repository.Repository.UnitOfWork,
+     *      org.komodo.spi.type.TriState)
      */
     @Override
     public void setAllowLanguage( final UnitOfWork uow,
-                                  final boolean newAllowLanguage ) throws KException {
-        setObjectProperty(uow, "setAllowLanguage", VdbLexicon.DataRole.Permission.ALLOW_LANGUAGE, newAllowLanguage); //$NON-NLS-1$
+                                  final TriState newAllowLanguage ) throws KException {
+        final Boolean value = ( newAllowLanguage.isUnset() ) ? null : ( newAllowLanguage.isTrue() ) ? true : false;
+        setObjectProperty(uow, "setAllowLanguage", VdbLexicon.DataRole.Permission.ALLOW_LANGUAGE, value); //$NON-NLS-1$
     }
 
     /**
      * {@inheritDoc}
-     *
-     * @see org.komodo.relational.vdb.Permission#setAllowRead(org.komodo.spi.repository.Repository.UnitOfWork, boolean)
+     * 
+     * @see org.komodo.relational.vdb.Permission#setAllowRead(org.komodo.spi.repository.Repository.UnitOfWork,
+     *      org.komodo.spi.type.TriState)
      */
     @Override
     public void setAllowRead( final UnitOfWork uow,
-                              final boolean newAllowRead ) throws KException {
-        setObjectProperty(uow, "setAllowRead", VdbLexicon.DataRole.Permission.ALLOW_READ, newAllowRead); //$NON-NLS-1$
+                              final TriState newAllowRead ) throws KException {
+        final Boolean value = ( newAllowRead.isUnset() ) ? null : ( newAllowRead.isTrue() ) ? true : false;
+        setObjectProperty(uow, "setAllowRead", VdbLexicon.DataRole.Permission.ALLOW_READ, value); //$NON-NLS-1$
     }
 
     /**
      * {@inheritDoc}
-     *
-     * @see org.komodo.relational.vdb.Permission#setAllowUpdate(org.komodo.spi.repository.Repository.UnitOfWork, boolean)
+     * 
+     * @see org.komodo.relational.vdb.Permission#setAllowUpdate(org.komodo.spi.repository.Repository.UnitOfWork,
+     *      org.komodo.spi.type.TriState)
      */
     @Override
     public void setAllowUpdate( final UnitOfWork uow,
-                                final boolean newAllowUpdate ) throws KException {
-        setObjectProperty(uow, "setAllowUpdate", VdbLexicon.DataRole.Permission.ALLOW_UPDATE, newAllowUpdate); //$NON-NLS-1$
+                                final TriState newAllowUpdate ) throws KException {
+        final Boolean value = ( newAllowUpdate.isUnset() ) ? null : ( newAllowUpdate.isTrue() ) ? true : false;
+        setObjectProperty(uow, "setAllowUpdate", VdbLexicon.DataRole.Permission.ALLOW_UPDATE, value); //$NON-NLS-1$
     }
 
 }

@@ -30,6 +30,7 @@ import org.komodo.spi.repository.KomodoObject;
 import org.komodo.spi.repository.KomodoType;
 import org.komodo.spi.repository.Repository.UnitOfWork;
 import org.komodo.spi.repository.Repository.UnitOfWork.State;
+import org.komodo.spi.type.TriState;
 import org.teiid.modeshape.sequencer.vdb.lexicon.VdbLexicon;
 
 /**
@@ -50,37 +51,37 @@ public interface Permission extends RelationalObject {
     /**
      * The default value indicating if this permission allows alter. Value is {@value} .
      */
-    boolean DEFAULT_ALLOW_ALTER = false;
+    TriState DEFAULT_ALLOW_ALTER = TriState.UNSET;
 
     /**
      * The default value indicating if this permission allows create. Value is {@value} .
      */
-    boolean DEFAULT_ALLOW_CREATE = false;
+    TriState DEFAULT_ALLOW_CREATE = TriState.UNSET;
 
     /**
      * The default value indicating if this permission allows delete. Value is {@value} .
      */
-    boolean DEFAULT_ALLOW_DELETE = false;
+    TriState DEFAULT_ALLOW_DELETE = TriState.UNSET;
 
     /**
      * The default value indicating if this permission allows execute. Value is {@value} .
      */
-    boolean DEFAULT_ALLOW_EXECUTE = false;
+    TriState DEFAULT_ALLOW_EXECUTE = TriState.UNSET;
 
     /**
      * The default value indicating if this permission allows language. Value is {@value} .
      */
-    boolean DEFAULT_ALLOW_LANGUAGE = false;
+    TriState DEFAULT_ALLOW_LANGUAGE = TriState.UNSET;
 
     /**
      * The default value indicating if this permission allows read. Value is {@value} .
      */
-    boolean DEFAULT_ALLOW_READ = false;
+    TriState DEFAULT_ALLOW_READ = TriState.UNSET;
 
     /**
      * The default value indicating if this permission allows update. Value is {@value} .
      */
-    boolean DEFAULT_ALLOW_UPDATE = false;
+    TriState DEFAULT_ALLOW_UPDATE = TriState.UNSET;
 
     /**
      * An empty array of permissions.
@@ -213,72 +214,72 @@ public interface Permission extends RelationalObject {
     /**
      * @param transaction
      *        the transaction (cannot be <code>null</code> or have a state that is not {@link State#NOT_STARTED})
-     * @return <code>true</code> if this permission allows alter
+     * @return either true, false, or unset (never <code>null</code>)
      * @throws KException
      *         if an error occurs
      * @see #DEFAULT_ALLOW_ALTER
      */
-    boolean isAllowAlter( final UnitOfWork transaction ) throws KException;
+    TriState isAllowAlter( final UnitOfWork transaction ) throws KException;
 
     /**
      * @param transaction
      *        the transaction (cannot be <code>null</code> or have a state that is not {@link State#NOT_STARTED})
-     * @return <code>true</code> if this permission allows create
+     * @return either true, false, or unset (never <code>null</code>)
      * @throws KException
      *         if an error occurs
      * @see #DEFAULT_ALLOW_CREATE
      */
-    boolean isAllowCreate( final UnitOfWork transaction ) throws KException;
+    TriState isAllowCreate( final UnitOfWork transaction ) throws KException;
 
     /**
      * @param transaction
      *        the transaction (cannot be <code>null</code> or have a state that is not {@link State#NOT_STARTED})
-     * @return <code>true</code> if this permission allows delete
+     * @return either true, false, or unset (never <code>null</code>)
      * @throws KException
      *         if an error occurs
      * @see #DEFAULT_ALLOW_DELETE
      */
-    boolean isAllowDelete( final UnitOfWork transaction ) throws KException;
+    TriState isAllowDelete( final UnitOfWork transaction ) throws KException;
 
     /**
      * @param transaction
      *        the transaction (cannot be <code>null</code> or have a state that is not {@link State#NOT_STARTED})
-     * @return <code>true</code> if this permission allows execute
+     * @return either true, false, or unset (never <code>null</code>)
      * @throws KException
      *         if an error occurs
      * @see #DEFAULT_ALLOW_EXECUTE
      */
-    boolean isAllowExecute( final UnitOfWork transaction ) throws KException;
+    TriState isAllowExecute( final UnitOfWork transaction ) throws KException;
 
     /**
      * @param transaction
      *        the transaction (cannot be <code>null</code> or have a state that is not {@link State#NOT_STARTED})
-     * @return <code>true</code> if this permission allows language
+     * @return either true, false, or unset (never <code>null</code>)
      * @throws KException
      *         if an error occurs
      * @see #DEFAULT_ALLOW_LANGUAGE
      */
-    boolean isAllowLanguage( final UnitOfWork transaction ) throws KException;
+    TriState isAllowLanguage( final UnitOfWork transaction ) throws KException;
 
     /**
      * @param transaction
      *        the transaction (cannot be <code>null</code> or have a state that is not {@link State#NOT_STARTED})
-     * @return <code>true</code> if this permission allows read
+     * @return either true, false, or unset (never <code>null</code>)
      * @throws KException
      *         if an error occurs
      * @see #DEFAULT_ALLOW_READ
      */
-    boolean isAllowRead( final UnitOfWork transaction ) throws KException;
+    TriState isAllowRead( final UnitOfWork transaction ) throws KException;
 
     /**
      * @param transaction
      *        the transaction (cannot be <code>null</code> or have a state that is not {@link State#NOT_STARTED})
-     * @return <code>true</code> if this permission allows update
+     * @return either true, false, or unset (never <code>null</code>)
      * @throws KException
      *         if an error occurs
      * @see #DEFAULT_ALLOW_UPDATE
      */
-    boolean isAllowUpdate( final UnitOfWork transaction ) throws KException;
+    TriState isAllowUpdate( final UnitOfWork transaction ) throws KException;
 
     /**
      * @param transaction
@@ -312,7 +313,7 @@ public interface Permission extends RelationalObject {
      * @see #DEFAULT_ALLOW_ALTER
      */
     void setAllowAlter( final UnitOfWork transaction,
-                        final boolean newAllowAlter ) throws KException;
+                        final TriState newAllowAlter ) throws KException;
 
     /**
      * @param transaction
@@ -324,7 +325,7 @@ public interface Permission extends RelationalObject {
      * @see #DEFAULT_ALLOW_CREATE
      */
     void setAllowCreate( final UnitOfWork transaction,
-                         final boolean newAllowCreate ) throws KException;
+                         final TriState newAllowCreate ) throws KException;
 
     /**
      * @param transaction
@@ -336,7 +337,7 @@ public interface Permission extends RelationalObject {
      * @see #DEFAULT_ALLOW_DELETE
      */
     void setAllowDelete( final UnitOfWork transaction,
-                         final boolean newAllowDelete ) throws KException;
+                         final TriState newAllowDelete ) throws KException;
 
     /**
      * @param transaction
@@ -348,7 +349,7 @@ public interface Permission extends RelationalObject {
      * @see #DEFAULT_ALLOW_EXECUTE
      */
     void setAllowExecute( final UnitOfWork transaction,
-                          final boolean newAllowExecute ) throws KException;
+                          final TriState newAllowExecute ) throws KException;
 
     /**
      * @param transaction
@@ -360,7 +361,7 @@ public interface Permission extends RelationalObject {
      * @see #DEFAULT_ALLOW_LANGUAGE
      */
     void setAllowLanguage( final UnitOfWork transaction,
-                           final boolean newAllowLanguage ) throws KException;
+                           final TriState newAllowLanguage ) throws KException;
 
     /**
      * @param transaction
@@ -372,7 +373,7 @@ public interface Permission extends RelationalObject {
      * @see #DEFAULT_ALLOW_READ
      */
     void setAllowRead( final UnitOfWork transaction,
-                       final boolean newAllowRead ) throws KException;
+                       final TriState newAllowRead ) throws KException;
 
     /**
      * @param transaction
@@ -384,6 +385,6 @@ public interface Permission extends RelationalObject {
      * @see #DEFAULT_ALLOW_UPDATE
      */
     void setAllowUpdate( final UnitOfWork transaction,
-                         final boolean newAllowUpdate ) throws KException;
+                         final TriState newAllowUpdate ) throws KException;
 
 }
