@@ -128,7 +128,8 @@ public enum TriState {
             return null;
         }
 
-        throw new IllegalStateException();
+        // should not get here
+        throw new IllegalStateException( "Unknown enum value of " + this ); //$NON-NLS-1$
     }
 
 }
